@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Api/Dockerfile
+    ports:
+      - "5200:80"
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Frontend/Dockerfile
+    ports:
+      - "4200:4200"
+      - "4300:80"
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 989o987Sun#
+      MYSQL_DATABASE: SchoolDB
+    ports:
+      - "3306:3306"
